@@ -1,10 +1,10 @@
 # src/events/views.py
-from rest_framework import viewsets # Импортируем viewsets из DRF
-from rest_framework import filters # Импортируем filters из DRF для фильтрации и поиска
-from rest_framework.pagination import PageNumberPagination # Импортируем PageNumberPagination для пагинации
-from django_filters.rest_framework import DjangoFilterBackend # Импортируем DjangoFilterBackend для Django-фильтрации
-from .models import Event # Импортируем модель Event
-from .serializers import EventSerializer # Импортируем EventSerializer
+from rest_framework import viewsets
+from rest_framework import filters
+from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from .models import Event
+from .serializers import EventSerializer
 
 class EventPagination(PageNumberPagination):
     """Класс пагинации для эндпоинта событий."""
@@ -14,8 +14,8 @@ class EventPagination(PageNumberPagination):
 
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
     """ViewSet для просмотра списка мероприятий."""
-    queryset = Event.objects.filter(status=Event.EventStatus.OPEN).prefetch_related('location') # Queryset для получения открытых мероприятий с предзагрузкой 'location' для оптимизации N+1
-    serializer_class = EventSerializer # Указываем сериализатор для Event
+    queryset = Event.objects.filter(status=Event.EventStatus.OPEN).prefetch_related('location') # Queryset для получения открытых мероприятий
+    serializer_class = EventSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend] # Подключаем бэкенды фильтрации
     search_fields = ['name'] # Поля, по которым будет осуществляться поиск (полнотекстовый поиск по названию)
     ordering_fields = ['event_time'] # Поля, по которым разрешена сортировка (по дате проведения)

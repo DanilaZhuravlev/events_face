@@ -8,8 +8,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password]) # Поле пароля, только для записи, с валидацией
 
     class Meta:
-        model = User # Используем стандартную модель User Django
-        fields = ('username', 'password') # Поля для регистрации
+        model = User
+        fields = ('username', 'password')
 
     def create(self, validated_data):
         """Создание нового пользователя."""
@@ -22,7 +22,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     """Сериализатор для входа пользователя."""
     username = serializers.CharField()
-    password = serializers.CharField(write_only=True) # Поле пароля, только для записи
+    password = serializers.CharField(write_only=True)
 
 class RefreshTokenSerializer(serializers.Serializer):
     """Сериализатор для обновления Access Token."""

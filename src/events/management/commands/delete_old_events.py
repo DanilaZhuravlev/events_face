@@ -13,12 +13,12 @@ class Command(BaseCommand):
         old_events = Event.objects.filter(event_time__lte=cutoff_date) # Выбираем мероприятия, event_time которых раньше или равна дате отсечения
         deleted_count = old_events.count() # Получаем количество устаревших мероприятий перед удалением
 
-        if deleted_count > 0: # Если есть устаревшие мероприятия
-            old_events.delete() # Удаляем устаревшие мероприятия
+        if deleted_count > 0:
+            old_events.delete()
             self.stdout.write(
-                self.style.SUCCESS(f"Успешно удалено {deleted_count} устаревших мероприятий, закончившихся до {cutoff_date.strftime('%d.%m.%Y')}") # Сообщение об успехе
+                self.style.SUCCESS(f"Успешно удалено {deleted_count} устаревших мероприятий, закончившихся до {cutoff_date.strftime('%d.%m.%Y')}")
             )
-        else: # Если устаревших мероприятий нет
+        else:
             self.stdout.write(
                 self.style.SUCCESS("Нет устаревших мероприятий для удаления.") # Сообщение об отсутствии устаревших мероприятий
             )
