@@ -1,4 +1,3 @@
-# src/events/tasks.py
 import logging
 from datetime import timedelta
 
@@ -22,15 +21,13 @@ def delete_old_events_task():
     deleted_count = old_events.count()
 
     if deleted_count > 0:
-        old_events.delete()  # Удаляем найденные мероприятия
+        old_events.delete()
         logger.info(
             f"Успешно удалено {deleted_count} устаревших мероприятий, закончившихся до {cutoff_date}."
         )
         print(
             f"DEBUG EVENTS TASK: Успешно удалено {deleted_count} устаревших мероприятий, закончившихся до {cutoff_date}."
-        )  # Debug print
+        )
     else:
         logger.info("Не найдено устаревших мероприятий для удаления.")
-        print(
-            "DEBUG EVENTS TASK: Не найдено устаревших мероприятий для удаления."
-        )  # Debug print
+        print("DEBUG EVENTS TASK: Не найдено устаревших мероприятий для удаления.")

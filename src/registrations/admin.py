@@ -1,26 +1,39 @@
-# src/registrations/admin.py
 from django.contrib import admin
 
+# Импортируем вашу модель Registration
 from .models import Registration
 
 
 @admin.register(Registration)
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
         "user",
         "event",
-        "registration_time",
         "status",
-    )  # Отображаем поля в списке регистраций
-    list_filter = (  # Добавляем фильтры на боковой панели
+        "created_at",
+        "expires_at",
+        "updated_at",
+    )
+
+    # Поля, по которым можно будет фильтровать список на боковой панели
+    list_filter = (
         "status",
         "event",
-        "user__username",
-        "user__email",  # (связанная модель User)
-        "registration_time",
+        "created_at",
+        "expires_at",
     )
+
     search_fields = (
+        "id__iexact",  # Поиск по точному ID (UUID)
         "user__username",
         "user__email",
         "event__name",
-    )  # Добавляем поиск по полям пользователя и мероприятия
+    )
+
+    # Поля, которые будут доступны только для чтения в форме редактирования
+    readonly_fields = (
+        "id",
+        "created_at",
+        "updated_at",
+    )

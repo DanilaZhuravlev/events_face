@@ -1,4 +1,3 @@
-# src/events/management/commands/delete_old_events.py
 from datetime import timedelta
 
 from django.core.management.base import BaseCommand
@@ -31,7 +30,5 @@ class Command(BaseCommand):
             )
         else:
             self.stdout.write(
-                self.style.SUCCESS(
-                    "Нет устаревших мероприятий для удаления."
-                )  # Сообщение об отсутствии устаревших мероприятий
+                self.style.SUCCESS("Нет устаревших мероприятий для удаления.")
             )

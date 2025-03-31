@@ -1,4 +1,3 @@
-# src/notifications/tasks.py
 import logging
 import time
 
@@ -18,14 +17,14 @@ def send_notification(self, user_id, message, notification_type):
         notification_type (str): Тип уведомления (для логирования).
     """
     try:
-        # Имитируем отправку (можно заменить на реальный сервис, например, email, push-уведомления)
+        # Имитируем отправку (можно заменить на реальный сервис)
         print(
             f"DEBUG NOTIFICATIONS TASK: Отправка уведомления типа '{notification_type}' пользователю {user_id}: {message}"
         )
         logger.info(
             f"Отправка уведомления типа '{notification_type}' пользователю {user_id}: {message}"
         )
-        time.sleep(2)  # Имитируем задержку (для демонстрации асинхронности)
+        time.sleep(2)  # Имитируем задержку
         print(
             f"DEBUG NOTIFICATIONS TASK: Уведомление типа '{notification_type}' пользователю {user_id} успешно отправлено."
         )
@@ -37,4 +36,4 @@ def send_notification(self, user_id, message, notification_type):
         logger.exception(
             f"Ошибка при отправке уведомления типа '{notification_type}' пользователю {user_id}. Повторная попытка. Ошибка: {exc}"
         )
-        self.retry(exc=exc, countdown=10)  # Повторить через 10 секунд в случае ошибки
+        self.retry(exc=exc, countdown=10)

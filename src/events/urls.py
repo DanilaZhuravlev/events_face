@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter  # Импортируем Defau
 from .views import EventViewSet  # Импортируем EventViewSet из views.py
 
 router = DefaultRouter()
-router.register("src.events", EventViewSet, basename="event")
+router.register("events", EventViewSet, basename="event")
 
 urlpatterns = [
     path("", include(router.urls)),

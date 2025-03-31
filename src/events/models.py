@@ -27,9 +27,9 @@ class Event(models.Model):
     )
     location = models.ForeignKey(  # Внешний ключ, связывающий мероприятие с площадкой
         EventLocation,  # Ссылка на модель EventLocation
-        on_delete=models.SET_NULL,  # Что делать при удалении связанной площадки: установить значение в NULL
-        null=True,  # Разрешить значение NULL (площадка может быть не указана)
-        blank=True,  # Разрешить пустое значение в формах Django
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name="events",  # Имя для обратной связи от EventLocation к Event (location.events.all())
     )
 
