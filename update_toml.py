@@ -1,6 +1,8 @@
-import subprocess
-import toml
 import pathlib
+import subprocess
+
+import toml
+
 
 def update_pyproject_toml():
     """Обновляет pyproject.toml с зависимостями из виртуального окружения."""
@@ -28,6 +30,7 @@ def update_pyproject_toml():
 
     # Записываем изменения в pyproject.toml
     pyproject_path.write_text(toml.dumps(pyproject_data))
+
 
 if __name__ == "__main__":
     update_pyproject_toml()
